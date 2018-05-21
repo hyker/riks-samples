@@ -15,10 +15,10 @@ struct RiksMQTTClient {
         const std::string& password,
         const std::string& host,
         uint16_t port,
-        const hyker::Json& config) :
+        const std::string& config) :
 
         mqtt_client (uid.c_str(), host.c_str(), port),
-        rikskit (uid, password, init_whitelist(), config) {
+        rikskit (uid, password, init_whitelist(), config.c_str()) {
     }
 
     void subscribe(const std::string& topic_name, std::function<void(std::string)> callback) {
@@ -63,25 +63,7 @@ int main() {
     const uint16_t port = 1234;
     MQTTServer mqtt_server{port};
 
-    const hyker::Json config{
-        // Hyker message broker settings
-        {"msg_host",    "dev.msg.hykr.io"},
-        {"msg_port",    443},
-        {"msg_api_key", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"},
-
-        // Hyker key distribution settings
-        {"kds_host",             "dev.kds.hykr.io"},
-        {"kds_port",             443},
-        {"kds_cache_expiration", -1},
-        {"kds_api_key",          "UNTRUSTED_API_KEY"},
-        {"kds_root_certificate", "-----BEGIN CERTIFICATE-----\r\nMIIBmzCCAUKgAwIBAgIJALBO1kPX8P21MAoGCCqGSM49BAMCMCwxKjAoBgNVBAMM\r\nIUhZS0VSX0RFVkVMT1BNRU5UX0NBX0RPX05PVF9UUlVTVDAeFw0xNzA3MTgwODUw\r\nMTBaFw0yNzA3MTYwODUwMTBaMCwxKjAoBgNVBAMMIUhZS0VSX0RFVkVMT1BNRU5U\r\nX0NBX0RPX05PVF9UUlVTVDBWMBAGByqGSM49AgEGBSuBBAAKA0IABATj2B5pB8nJ\r\nuJDyBF3Ri2HdP+WlEdwPlNRlCPTFumAy0xjodEfioFip0RG/WQ4ngr51Ybd9LXQO\r\nVhCBAOtHO7ajUDBOMB0GA1UdDgQWBBR2L04LwSBYir0mOIMwS49TqeoS5TAfBgNV\r\nHSMEGDAWgBR2L04LwSBYir0mOIMwS49TqeoS5TAMBgNVHRMEBTADAQH/MAoGCCqG\r\nSM49BAMCA0cAMEQCIBS/l2xRD+JrNMrdXr6pdYae1sC5W3Ru8+QNT9FaIvEFAiA3\r\nJedmiSzbvHHk980MaUWIvNIWAq4fnE7I+cFHpIVCeQ==\r\n-----END CERTIFICATE-----"},
-
-        // Other settings
-        {"storage_path",                 "./keys"},
-        {"replay_protector_window_size", 1000},
-        {"key_relay_enabled",            false}
-    };
-
+    const auto config = "../../../default.config";
     RiksMQTTClient riks_mqtt_client_1{hyker::util::random_string(16), "password", "localhost", port, config};
     RiksMQTTClient riks_mqtt_client_2{hyker::util::random_string(16), "password", "localhost", port, config};
 

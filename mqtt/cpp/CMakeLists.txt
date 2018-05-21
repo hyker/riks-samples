@@ -16,7 +16,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
-        ${CMAKE_SOURCE_DIR}/../../../riks-cpp/build/lib/libriks.so
+        ${CMAKE_SOURCE_DIR}/libriks.so
         Threads::Threads
         OpenSSL::SSL
         OpenSSL::Crypto
@@ -24,6 +24,5 @@ target_link_libraries(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
-        ${CMAKE_SOURCE_DIR}/../../../riks-cpp/src
         include
         ${Boost_INCLUDE_DIRS})
