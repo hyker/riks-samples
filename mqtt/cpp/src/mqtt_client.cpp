@@ -11,8 +11,8 @@ MQTTClient::MQTTClient(
 
     mqtt_client->set_client_id(client_id);
     mqtt_client->set_clean_session(true);
-    mqtt_client->set_connack_handler([&](bool session_present, uint8_t connack_return_code) {
-        connected = connack_return_code == mqtt::connect_return_code::accepted;
+    mqtt_client->set_connack_handler([&](bool session_present, uint8_t return_code) {
+        connected = return_code == mqtt::connect_return_code::accepted;
         return true;
     });
     mqtt_client->set_publish_handler([&](uint8_t header, auto packet_id, auto topic_name, auto contents) {

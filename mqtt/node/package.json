@@ -1,0 +1,16 @@
+{
+  "name": "riks-samples-mqtt-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aedes": "^0.34.0",
+    "mqtt": "^2.18.0",
+    "riks": "^3.1.1"
+  }
+}

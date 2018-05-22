@@ -5,10 +5,9 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
-    src/mqtt_client.hpp
     src/mqtt_client.cpp
-    src/mqtt_server.hpp
-    src/mqtt_server.cpp)
+    src/mqtt_server.cpp
+    src/riks_mqtt_client.cpp)
 
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
