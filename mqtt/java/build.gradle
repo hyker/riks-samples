@@ -1,0 +1,50 @@
+apply plugin: 'application'
+
+mainClassName = "Main"
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+def urlFile = { url, name ->
+    File file = new File("$buildDir/download/${name}.jar")
+    file.parentFile.mkdirs()
+    if (!file.exists()) {
+        new URL(url).withInputStream { downloadStream ->
+            file.withOutputStream { fileOut ->
+                fileOut << downloadStream
+            }
+        }
+    }
+    files(file.absolutePath)
+}
+
+dependencies {
+    compile 'org.bouncycastle:bcmail-jdk15on:1.58'
+    compile 'org.bouncycastle:bcprov-jdk15on:1.58'
+    compile 'org.bouncycastle:bcpkix-jdk15on:1.58'
+    compile 'org.slf4j:slf4j-simple:1.7.12'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile urlFile('https://hyker.ams3.digitaloceanspaces.com/riks/java/riks.jar', 'riks')
+
+    compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
+    compile 'io.moquette:moquette-broker:0.11'
+}
+
+sourceSets {
+    main {
+        java { srcDir 'src' }
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+            'Implementation-Title': 'riks-samples-mqtt-java',
+            'Implementation-Version': '1.0.0',
+            'Class-Path': configurations.compile.collect { it.toURI().toString() }.join(' '),
+            'Main-Class': mainClassName
+        )
+    }
+}
