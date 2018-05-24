@@ -74,7 +74,7 @@ public class RiksMQTTClient {
         try {
             mqttClient.subscribe(topic);
             subscriptions.put(topic, (MqttMessage mqttMessage) -> {
-                riksKit.decryptMessage(mqttMessage.getPayload()).then((Message riksMessage) -> {
+                riksKit.decrypt(mqttMessage.getPayload()).then((Message riksMessage) -> {
                     callback.accept(new String(riksMessage.getSecretData()));
                 });
             });
@@ -85,7 +85,7 @@ public class RiksMQTTClient {
 
     public void publish(String topic, String content) {
         Message riksMessage = new Message(content.getBytes());
-        riksKit.encryptMessage(riksMessage, topic).then((byte[] encryptedContent) -> {
+        riksKit.encrypt(riksMessage, topic).then((byte[] encryptedContent) -> {
             MqttMessage mqttMessage = new MqttMessage(encryptedContent);
             mqttMessage.setQos(2);
             try {
