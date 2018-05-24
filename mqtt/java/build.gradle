@@ -3,8 +3,13 @@ apply plugin: 'application'
 mainClassName = "Main"
 
 repositories {
+    // Riks
     maven { url 'https://raw.github.com/hykersec/maven/master' }
+
+    // MQTT Server
     jcenter()
+
+    // MQTT Client
     mavenCentral()
 }
 
