@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
+    }
+}
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId 'io.hyker.riks.samples.mqtt.android'
+        minSdkVersion 19
+    }
+
+    repositories {
+        // Riks
+        maven { url 'file:///home/donalonzo/work/riks-java/maven' }//https://raw.github.com/hykersec/maven/master' }
+
+        // MQTT Server
+        jcenter()
+
+        // MQTT Client
+        mavenCentral()
+
+        // Gradle Android
+        google()
+    }
+
+    dependencies {
+        // Riks
+        implementation 'io.hyker:riks-android:3.1.0'
+
+        // MQTT Server
+        //implementation 'io.moquette:moquette-broker:0.11'
+        
+        // MQTT Client
+        implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
+        implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.0.2'
+    }
+
+    sourceSets {
+        main {
+            java { srcDir 'src/main/java' }
+            res  { srcDir 'src/main/resources' }
+        }
+    }
+}
