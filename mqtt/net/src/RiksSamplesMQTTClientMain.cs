@@ -26,7 +26,7 @@ class RiksSamplesMQTTClientMain
                 // Creates and starts the producer
                 var producer = await RiksMQTTClient.Connect(GenerateRandomUID(), "password", mqttHost, mqttPort, configFile);
                 
-                // Subscribes to topic "SecretlySecureTimeTelling"
+                // Subscribes to topic "SuperSecretSpeakingClock"
                 consumer.Subscribe("SuperSecretSpeakingClock", Console.WriteLine);
 
                 // Publishes current time every second
