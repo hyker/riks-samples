@@ -5,7 +5,7 @@ const randomUID = () => Math.random().toString(36).slice(-16);
 const mqttHost = "localhost";
 const mqttPort = 1234;
 const config = "../../default.config";
-const topicName = "Secret channel";
+const topicName = "SuperSecretSpeakingClock";
 
 // Start MQTT server
 const mqttServer = require('net').createServer(aedes.handle);
@@ -23,6 +23,6 @@ riksMQTTClient2.subscribe(topicName, (content) => {
 // Publish to topic
 (function pulse() {
   const timestamp = Date.now();
-  riksMQTTClient1.publish(topicName, "Hello world! (" + timestamp + ")");
+  riksMQTTClient1.publish(topicName, "The time is: " + timestamp);
   setTimeout(pulse, 1000);
 })();

@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
             final int mqttPort = 1234;
             final String password = "password";
             final String config = "../../default.config";
-            final String topicName = "Secret channel";
+            final String topicName = "SuperSecretSpeakingClock";
 
             // Start MQTT clients
             final RiksMQTTClient riksMQTTClient1 = new RiksMQTTClient(randomUID(), password, mqttHost, mqttPort, config);
@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 
             // Publish to topic
             while (true) {
-                riksMQTTClient1.publish(topicName, String.format("Hello world! (%d)", System.currentTimeMillis()));
+                riksMQTTClient1.publish(topicName, String.format("The time is: %d", System.currentTimeMillis()));
                 Thread.sleep(1000);
             }
         } catch (RiksMQTTClient.RiksMQTTException | InterruptedException e) {

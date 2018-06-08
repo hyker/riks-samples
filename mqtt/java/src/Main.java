@@ -13,7 +13,7 @@ class Main {
         final int mqttPort = 1234;
         final String password = "password";
         final String config = "../../default.config";
-        final String topicName = "Secret channel";
+        final String topicName = "SuperSecretSpeakingClock";
 
         // Start MQTT server
         final Server mqttServer = new Server();
@@ -33,7 +33,7 @@ class Main {
 
         // Publish to topic
         while (true) {
-            riksMQTTClient1.publish(topicName, String.format("Hello world! (%d)", System.currentTimeMillis()));
+            riksMQTTClient1.publish(topicName, String.format("The time is: %d", System.currentTimeMillis()));
             Thread.sleep(1000);
         }
     }
