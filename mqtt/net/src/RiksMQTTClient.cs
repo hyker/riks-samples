@@ -67,16 +67,16 @@ public class RiksMQTTClient
     private RiksMQTTClient(IMqttClient mqttClient, string uid, string password, string config)
     {
         this.mqttClient = mqttClient;
-        riksKit = new RiksKit(uid, password, new Whitelist(AllowedForKey, (string keyID, string keySpace) => { }), config);
+        riksKit = new RiksKit(uid, password, new Whitelist(AllowedForKey, (string keySpace, string keyID) => { }), config);
     }
 
     private RiksMQTTClient(IMqttClient mqttClient, string uid, string password, Dictionary<string, object> config)
     {
         this.mqttClient = mqttClient;
-        riksKit = new RiksKit(uid, password, new Whitelist(AllowedForKey, (string keyID, string keySpace) => { }), config);
+        riksKit = new RiksKit(uid, password, new Whitelist(AllowedForKey, (string keySpace, string keyID) => { }), config);
     }
 
-    private bool AllowedForKey(string uid, string keyID, string keySpace)
+    private bool AllowedForKey(string uid, string keySpace, string keyID)
     {
         // Allow all requests
         System.Console.WriteLine(uid + " requested access to topic " + keySpace + ". Granting access.");
