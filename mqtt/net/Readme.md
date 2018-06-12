@@ -1,6 +1,6 @@
 ## Run the sample in Visual Studio Developer Command Prompt
 
-* Run the batch file *build.bat*.
+Run the batch file *build.bat*.
 
 ## Run the sample in Visual Studio
 
@@ -12,3 +12,7 @@
 5. Select the configuration file and change the value of *Copy to Output Directory* to *Copy if newer*.
 6. Change the variable *configFile* in *RiksSamplesMQTTClientMain.cs* to point to the included configuration file.
 7. Click *Start* to run the demo.
+
+### Troubleshooting
+
+If you get System.BadImageFormatException or something similar, you might need to change the platform target of your project from *Any CPU* to *x86* or *x64* depending on your system.
