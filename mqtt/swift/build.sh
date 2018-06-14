@@ -1,20 +1,8 @@
- #!/bin/sh
+#!/bin/sh
 
-mkdir -p build
-cd build
+pod install
 
-cp ../../../../riks-swift/build/Riks.Swiftmodule .
-cp ../../../../riks-swift/build/libRiks.dylib .
-cp ../../../../riks-swift/build/lib/libriks-objc.dylib .
-
-swiftc \
-    -emit-executable \
-    ../src/main.swift \
-    ../src/RiksMQTTClient.swift \
-    -I. \
-    -L. \
-    -lRiks \
-    -Xlinker -rpath \
-    -Xlinker .
-
-./main
+xcodebuild \
+    -workspace RiksSamplesMQTTSwift.xcworkspace \
+    -scheme RiksSamplesMQTTSwift \
+    -derivedDataPath build

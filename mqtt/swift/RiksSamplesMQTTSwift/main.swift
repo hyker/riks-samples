@@ -1,11 +1,11 @@
 import Foundation
 
-var mqttHost = "localhost"
-var mqttPort = 1234
-var configFile = "../../../default.config"
+let mqttHost = "localhost"
+let mqttPort: UInt16 = 1234
+let configFile = "../../../default.config"
 
 // Create and start the consumer
-var consumer = try RiksMQTTClient(
+let consumer = try RiksMQTTClient(
     uid: UUID().uuidString,
     password: "password",
     host: mqttHost,
@@ -14,7 +14,7 @@ var consumer = try RiksMQTTClient(
 )
 
 // Create and start the producer
-var producer = try RiksMQTTClient(
+let producer = try RiksMQTTClient(
     uid: UUID().uuidString,
     password: "password",
     host: mqttHost,

@@ -1,15 +1,23 @@
-import Riks
+import RiksSwift
+import CocoaMQTT
 
 class RiksMQTTClient {
-
-    private var rikskit: Riks.RiksKit
-
+    
+    private var rikskit: RiksSwift.RiksKit
+    private var mqttClient: CocoaMQTT
+    
     init(
         uid: String,
         password: String,
         host: String,
-        port: Int,
+        port: UInt16,
         config: String) throws {
+
+        self.mqttClient = CocoaMQTT(
+            clientID: uid,
+            host: host,
+            port: port
+        )
         
         func allowedForKey(
             _ uid: String,
@@ -21,29 +29,29 @@ class RiksMQTTClient {
             print(String(format: "%s requested access to topic %s. Granting access.", uid, keySpace))
             callback(true)
         }
-
-        let whitelist = Riks.Whitelist(
+        
+        let whitelist = RiksSwift.Whitelist(
             allowedForKey: allowedForKey
         )
-
-        self.rikskit = try Riks.RiksKit(
+        
+        rikskit = try RiksSwift.RiksKit(
             uid: uid,
             password: password,
             whitelist: whitelist,
             config: config
         )
     }
-
+    
     public func subscribe(
         topic: String,
         callback: ((String) -> Void)) {
         
     }
-
+    
     public func publish(
         topic: String,
         message: String) {
         
     }
-
+    
 }

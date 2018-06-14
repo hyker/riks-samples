@@ -1,0 +1,5 @@
+target 'RiksSamplesMQTTSwift' do
+  use_frameworks!
+  pod 'RiksSwift', :path => '../../../riks-swift/'
+  pod 'CocoaMQTT'
+end
