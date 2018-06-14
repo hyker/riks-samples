@@ -9,7 +9,7 @@ class RiksMQTTClient {
         password: String,
         host: String,
         port: Int,
-        config: String) {
+        config: String) throws {
         
         func allowedForKey(
             _ uid: String,
@@ -22,18 +22,28 @@ class RiksMQTTClient {
             callback(true)
         }
 
-        func newKey(
-            _ keySpace: String,
-            _ keyID: String) {
-        }
+        let whitelist = Riks.Whitelist(
+            allowedForKey: allowedForKey
+        )
 
-        self.rikskit = Riks.RiksKit(
+        self.rikskit = try Riks.RiksKit(
             uid: uid,
             password: password,
-            allowedForKey: allowedForKey,
-            newKey: newKey,
+            whitelist: whitelist,
             config: config
         )
+    }
+
+    public func subscribe(
+        topic: String,
+        callback: ((String) -> Void)) {
+        
+    }
+
+    public func publish(
+        topic: String,
+        message: String) {
+        
     }
 
 }

@@ -16,20 +16,20 @@ class RiksSamplesMQTTClientMain
 
             try
             {
-                // Starts MQTT server
+                // Start MQTT server
                 var mqttServer = new MQTTnet.MqttFactory().CreateMqttServer();
                 await mqttServer.StartAsync(new MQTTnet.Server.MqttServerOptionsBuilder().WithDefaultEndpointPort(mqttPort).Build());
 
-                // Creates and starts the consumer
+                // Create and start the consumer
                 var consumer = await RiksMQTTClient.Connect(GenerateRandomUID(), "password", mqttHost, mqttPort, configFile);
 
-                // Creates and starts the producer
+                // Create and start the producer
                 var producer = await RiksMQTTClient.Connect(GenerateRandomUID(), "password", mqttHost, mqttPort, configFile);
                 
-                // Subscribes to topic "SuperSecretSpeakingClock"
+                // Subscribe to topic "SuperSecretSpeakingClock"
                 consumer.Subscribe("SuperSecretSpeakingClock", Console.WriteLine);
 
-                // Publishes current time every second
+                // Publish current time every second
                 while (true)
                 {
                     var timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
