@@ -1,4 +1,4 @@
 <resources>
   <string name="app_name">riks-samples-mqtt-android</string>
-  <string name="hello_world">Hello world!</string>
+  <string name="clock">Clock has not yet been synched.</string>
 </resources>

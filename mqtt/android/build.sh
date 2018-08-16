@@ -1,3 +1,4 @@
 #!/bin/sh
 
-./gradlew build
+cp ../../default.config src/main/resources/raw/config
+./gradlew start

@@ -42,8 +42,8 @@ android {
         implementation 'io.hyker:riks-android:3.2.0'
 
         // MQTT Client
-        implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
-        implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.0.2'
+        implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+        implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     }
 
     sourceSets {
@@ -52,4 +52,9 @@ android {
             res  { srcDir 'src/main/resources' }
         }
     }
+}
+
+task start(type: Exec) {
+    dependsOn 'installDebug'
+    commandLine 'adb', 'shell', 'am', 'start', '-n', "$android.defaultConfig.applicationId/.MainActivity"
 }

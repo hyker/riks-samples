@@ -1,3 +1,4 @@
 .gradle/
 build/
 keys/
+src/main/resources/raw/config
