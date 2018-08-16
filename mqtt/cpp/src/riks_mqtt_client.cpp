@@ -20,6 +20,7 @@ void RiksMQTTClient::subscribe(const std::string& topic_name, std::function<void
 }
 
 void RiksMQTTClient::publish(const std::string& topic_name, const std::string& contents) {
+    rikskit.rekey(topic_name);
     rikskit.encrypt({contents, {/*immutable data*/}, {/*mutable data*/}}, topic_name)
         .then([this, topic_name](const auto& encrypted_message) {
             mqtt_client.publish(topic_name, encrypted_message);

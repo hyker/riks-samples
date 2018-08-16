@@ -10,7 +10,7 @@
 int main() {
     const auto mqtt_host = "localhost";
     const uint16_t mqtt_port = 1234;
-    const auto config = "../../default.config";
+    const auto config = "../../../default.config";
 
     MQTTServer mqtt_server{mqtt_port};
     RiksMQTTClient riks_mqtt_client_1{hyker::util::random_string(16).c_str(), "password", mqtt_host, mqtt_port, config};
