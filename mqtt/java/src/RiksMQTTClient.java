@@ -1,4 +1,3 @@
-import io.hyker.cryptobox.PublicKeyLookupException;
 import io.hyker.riks.Message;
 import io.hyker.riks.RiksKit;
 import io.hyker.riks.Whitelist;
@@ -65,7 +64,7 @@ public class RiksMQTTClient {
                 }
             };
             this.riksKit = new RiksKit(uid, password, whitelist, config);
-        } catch (IOException | MqttException | PublicKeyLookupException | CertificateException e) {
+        } catch (Exception e) {
             throw new RiksMQTTException(e);
         }
     }

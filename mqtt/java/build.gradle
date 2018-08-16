@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     // Riks
-    compile 'io.hyker:riks:3.1.0'
+    compile 'io.hyker:riks:3.2.0'
 
     // MQTT Server
     compile 'io.moquette:moquette-broker:0.11'
