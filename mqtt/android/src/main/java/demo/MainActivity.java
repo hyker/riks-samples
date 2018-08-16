@@ -16,16 +16,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         try {
-            final String mqttHost = "localhost";
-            final int mqttPort = 1234;
-            final String password = "password";
+            final String mqttHost = "mqtt.dev.v2.hykr.io";
+            final int mqttPort = 1883;
             final String config = "../../default.config";
-            final String topicName = "SuperSecretSpeakingClock";
 
             // Start MQTT clients
-            final RiksMQTTClient riksMQTTClient1 = new RiksMQTTClient(randomUID(), password, mqttHost, mqttPort, config);
-            final RiksMQTTClient riksMQTTClient2 = new RiksMQTTClient(randomUID(), password, mqttHost, mqttPort, config);
+            final RiksMQTTClient riksMQTTClient1 = new RiksMQTTClient(randomUID(), "password", mqttHost, mqttPort, config);
+            final RiksMQTTClient riksMQTTClient2 = new RiksMQTTClient(randomUID(), "password", mqttHost, mqttPort, config);
 
+            final String topicName = "SuperSecretSpeakingClock";
+            
             // Subscribe to topic
             riksMQTTClient2.subscribe(topicName, (String content) -> {
                 System.out.println(content);

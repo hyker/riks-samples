@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aedes": "^0.34.0",
     "mqtt": "^2.18.0",
     "riks": "^3.1.1"
   }

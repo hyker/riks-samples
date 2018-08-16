@@ -10,16 +10,12 @@ class RiksSamplesMQTTClientMain
     static void Main(string[] args)
     {
         Task.Run(async () => {
-            var mqttHost = "localhost";
-            var mqttPort = 1234;
+            var mqttHost = "mqtt.dev.v2.hykr.io";
+            var mqttPort = 1883;
             var configFile = "../../default.config";
 
             try
             {
-                // Start MQTT server
-                var mqttServer = new MQTTnet.MqttFactory().CreateMqttServer();
-                await mqttServer.StartAsync(new MQTTnet.Server.MqttServerOptionsBuilder().WithDefaultEndpointPort(mqttPort).Build());
-
                 // Create and start the consumer
                 var consumer = await RiksMQTTClient.Connect(GenerateRandomUID(), "password", mqttHost, mqttPort, configFile);
 

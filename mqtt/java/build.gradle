@@ -6,9 +6,6 @@ repositories {
     // Riks
     maven { url 'https://raw.github.com/hykersec/maven/master' }
 
-    // MQTT Server
-    jcenter()
-
     // MQTT Client
     mavenCentral()
 }
@@ -16,9 +13,6 @@ repositories {
 dependencies {
     // Riks
     compile 'io.hyker:riks:3.2.0'
-
-    // MQTT Server
-    compile 'io.moquette:moquette-broker:0.11'
 
     // MQTT Client
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
