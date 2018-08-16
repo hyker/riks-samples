@@ -15,7 +15,7 @@ class Main {
         final RiksMQTTClient riksMQTTClient1 = new RiksMQTTClient(randomUID(), "password", mqttHost, mqttPort, config);
         final RiksMQTTClient riksMQTTClient2 = new RiksMQTTClient(randomUID(), "password", mqttHost, mqttPort, config);
 
-        final String topicName = "SuperSecretSpeakingClock";
+        final String topicName = "SuperSecretSpeakingClock-" + randomUID();
 
         // Subscribe to topic
         riksMQTTClient2.subscribe(topicName, (String content) -> {

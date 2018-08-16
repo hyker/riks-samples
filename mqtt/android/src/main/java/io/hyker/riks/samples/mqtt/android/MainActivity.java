@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
                 final RiksMQTTClient riksMQTTClient1 = new RiksMQTTClient(randomUID(), "password", mqttHost, mqttPort, config, storageDir);
                 final RiksMQTTClient riksMQTTClient2 = new RiksMQTTClient(randomUID(), "password", mqttHost, mqttPort, config, storageDir);
 
-                final String topicName = "SuperSecretSpeakingClock";
+                final String topicName = "SuperSecretSpeakingClock-" + randomUID();
                 
                 // Subscribe to topic
                 riksMQTTClient2.subscribe(topicName, (String content) -> {

@@ -1,7 +1,7 @@
 import Foundation
 
-let mqttHost = "localhost"
-let mqttPort: UInt16 = 1234
+let mqttHost = "mqtt.dev.v2.hykr.io"
+let mqttPort: UInt16 = 1883
 let configFile = "../../../default.config"
 
 // Create and start the consumer
@@ -22,12 +22,14 @@ let producer = try RiksMQTTClient(
     config: configFile
 )
 
-// Subscribe to topic "SuperSecretSpeakingClock"
-consumer.subscribe(topic: "SuperSecretSpeakingClock", callback: {(message: String) in print(message)})
+let topicName = "SuperSecretSpeakingClock" + UUID().uuidString
+
+// Subscribe to topic
+consumer.subscribe(topic: topicName, callback: {(message: String) in print(message)})
 
 // Publish current time every second
 while (true) {
     let timestamp = Date().timeIntervalSince1970 * 1000
-    producer.publish(topic: "SuperSecretSpeakingClock", message: String(format: "%f", timestamp))
+    producer.publish(topic: topicName, message: String(format: "%f", timestamp))
     sleep(1)
 }

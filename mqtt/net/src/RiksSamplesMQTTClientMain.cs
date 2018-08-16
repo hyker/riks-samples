@@ -21,15 +21,17 @@ class RiksSamplesMQTTClientMain
 
                 // Create and start the producer
                 var producer = await RiksMQTTClient.Connect(GenerateRandomUID(), "password", mqttHost, mqttPort, configFile);
+
+                var topicName = "SuperSecretSpeakingClock-" + GenerateRandomUID();
                 
                 // Subscribe to topic "SuperSecretSpeakingClock"
-                consumer.Subscribe("SuperSecretSpeakingClock", Console.WriteLine);
+                consumer.Subscribe(topicName, Console.WriteLine);
 
                 // Publish current time every second
                 while (true)
                 {
                     var timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                    producer.Publish("SuperSecretSpeakingClock", String.Format("The time is: {0}", timestamp));
+                    producer.Publish(topicName, String.Format("The time is: {0}", timestamp));
                     Thread.Sleep(1000);
                 }
             }

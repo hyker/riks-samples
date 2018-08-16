@@ -14,7 +14,7 @@ int main() {
     RiksMQTTClient riks_mqtt_client_1{hyker::util::random_string(16).c_str(), "password", mqtt_host, mqtt_port, config};
     RiksMQTTClient riks_mqtt_client_2{hyker::util::random_string(16).c_str(), "password", mqtt_host, mqtt_port, config};
 
-    const auto topic_name = "SuperSecretSpeakingClock";
+    const auto topic_name = "SuperSecretSpeakingClock-" + hyker::util::random_string(16);
 
     riks_mqtt_client_2.subscribe(topic_name, [](std::string content) {
         std::cout << content << '\n';
