@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     // Riks
-    compile 'io.hyker:riks:3.2.1'
+    compile 'io.hyker:riks:3.2.2'
 
     // MQTT Client
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
